@@ -35,7 +35,7 @@ const createCallAdapterLocator = (locator: string): CallAdapterLocator | undefin
   return undefined;
 };
 
-export const ContosoCallContainer = (props: ContainerProps): JSX.Element => {
+export const CommunicationReactAndCallingContosoCallContainer = (props: ContainerProps): JSX.Element => {
   const credential = useMemo(() => {
     try {
       return new AzureCommunicationTokenCredential(props.token);
@@ -87,3 +87,5 @@ const leaveCall = async (adapter: CallAdapter): Promise<void> => {
     console.error('Failed to leave call', e);
   });
 };
+
+export default CommunicationReactAndCallingContosoCallContainer;

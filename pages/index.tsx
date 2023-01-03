@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import dynamic from 'next/dynamic'
 
 export default function Home() {
   const [htmlElement, setHtmlElement] = useState<JSX.Element | undefined>(undefined)
@@ -10,8 +11,16 @@ export default function Home() {
         token: "<access token>",
         displayName: "<your name>"
       };
-      const ContosoCallContainer = (await import('./ContosoCallContainer')).ContosoCallContainer;
-      const element = <ContosoCallContainer userId={someProps.userId} locator={someProps.locator} token={someProps.token} displayName={someProps.displayName} ></ContosoCallContainer>;
+      // const CommunicationReactAndCallingContosoCallContainer = dynamic(
+      //   () => import('../components/CommunicationReactAndCallingContosoCallContainer'),
+      //   { ssr: false}
+      // );
+      // const element = <CommunicationReactAndCallingContosoCallContainer userId={someProps.userId} locator={someProps.locator} token={someProps.token} displayName={someProps.displayName} ></ContosoCallContainer>;
+      const OnlyCallingSDKcomponent = dynamic(
+        () => import('../components/OnlyCallingSDKcomponent'),
+        { ssr: false }
+      );
+      const element = <OnlyCallingSDKcomponent />
       setHtmlElement(element);
     })();
   }, [])
